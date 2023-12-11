@@ -72,6 +72,9 @@
     <ClCompile Include="source\LeanFloor.cpp">
       <Filter>ソース ファイル\Object</Filter>
     </ClCompile>
+    <ClCompile Include="source\DebugEnemy.cpp">
+      <Filter>ソース ファイル\Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\ApplicationMain.h">
@@ -120,6 +123,9 @@
       <Filter>ヘッダー ファイル\Object</Filter>
     </ClInclude>
     <ClInclude Include="source\LeanFloor.h">
+      <Filter>ヘッダー ファイル\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="source\DebugEnemy.h">
       <Filter>ヘッダー ファイル\Object</Filter>
     </ClInclude>
   </ItemGroup>

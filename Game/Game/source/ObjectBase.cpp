@@ -45,7 +45,7 @@ bool ObjectBase::Process() {
 	return true;
 }
 
-bool ObjectBase::Renderer() {
+bool ObjectBase::Render() {
 
 	matrix = MGetIdent();
 	matrix = MMult(matrix, MGetRotX(_euler_angle.x));

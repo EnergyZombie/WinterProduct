@@ -9,7 +9,7 @@ public:
 	virtual bool Initialize();
 	virtual bool Terminate();
 	virtual bool Process();
-	virtual bool Renderer();
+	virtual bool Render();
 
 	void SetPos(Vector3D pos) {
 		_pos = pos; 

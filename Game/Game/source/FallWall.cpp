@@ -113,8 +113,8 @@ bool FallWall::Process(){
 	return true;
 }
 
-bool FallWall::Renderer() {
-	ObjectBase::Renderer();
+bool FallWall::Render() {
+	ObjectBase::Render();
 
 	return true;
 }

@@ -6,7 +6,7 @@ public :
 	CharaBase(class ObjectServer* server);
 
 	//
-	bool Renderer()override;
+	bool Render()override;
 
 	//
 	bool IsHitMap();
@@ -14,6 +14,8 @@ public :
 	float GetCollSubY()const { return _colSubY; }
 	void AddMove(Vector3D add) { _move += add; }
 	ObjectBase* GetOnObject()const { return _onObj; }
+
+	virtual void ProcessGravity();
 protected:
 	double radian;
 	bool	_is_stand;		//オブジェクトの上に立っているか

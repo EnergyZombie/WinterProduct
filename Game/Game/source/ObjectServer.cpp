@@ -4,6 +4,7 @@
 #include"SignBoard.h"
 #include"ModeGame.h"
 #include<algorithm>
+#include"DebugEnemy.h"
 
 ObjectServer::ObjectServer(ModeGame* game) {
 	_game = game;
@@ -14,7 +15,7 @@ ObjectServer::~ObjectServer() {
 }
 
 bool ObjectServer::Initialize() {
-	
+	AddObj(new DebugEnemy(this));
 	return true;
 }
 
@@ -53,14 +54,14 @@ bool ObjectServer::Process() {
 
 bool ObjectServer::Renderer() {
 	//オブジェクトを巡回処理
-	_player->Renderer();
+	_player->Render();
 	for (auto& obj : _obj) {
 		ChangeLightTypePoint(VAdd(obj->GetDxPos(), VGet(0.f, 50.f, 0)), 1000.f, 0.f, 0.005f, 0.f);
 		// コリジョン判定用ラインの描画
 		//if(_game->GetMap()->_bViewCollision) {
 		//	DrawLine3D(VAdd(obj->GetDxPos(), VGet(0, obj->_colSubY, 0)), VAdd(obj->GetDxPos(), VGet(0, -99999.f, 0)), GetColor(255, 0, 0));
 		//}
-		if (!obj->Renderer()) {
+		if (!obj->Render()) {
 			return false;
 		}
 	}
