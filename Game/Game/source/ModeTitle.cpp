@@ -2,7 +2,7 @@
 #include "AppFrame.h"
 #include "ApplicationMain.h"
 #include "ModeTitle.h"
-#include "ModeGame.h"
+#include "ModeStageConfirmation.h"
 
 bool ModeTitle::Initialize() {
 	if (!base::Initialize()) { return false; }
@@ -27,7 +27,7 @@ bool ModeTitle::Process() {
 		// ‚±‚Ìƒ‚[ƒh‚ðíœ—\–ñ
 		ModeServer::GetInstance()->Del(this);
 		// ŽŸ‚Ìƒ‚[ƒh‚ð“o˜^
-		ModeServer::GetInstance()->Add(new ModeGame(), 1, "game");
+		ModeServer::GetInstance()->Add(new ModeStageConfirmation(), 1, "stage");
 	}
 
 	return true;

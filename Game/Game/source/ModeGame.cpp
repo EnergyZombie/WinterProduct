@@ -2,9 +2,10 @@
 #include "AppFrame.h"
 #include "ApplicationMain.h"
 #include "ModeGame.h"
-#include"ObjectServer.h"
-#include"Player.h"
-#include"Camera.h"
+#include "ObjectServer.h"
+#include "Player.h"
+#include "Camera.h"
+#include "ModeMenu.h"
 
 bool ModeGame::Initialize() {
 	if (!base::Initialize()) { return false; }
@@ -43,6 +44,12 @@ bool ModeGame::Process() {
 	
 	_camera->Process();
 	auto trg = GetPad()->GetKeyButton();
+
+	if (trg & INPUT_START) {
+		// ポーズ画面
+		ModeServer::GetInstance()->Add(new ModeMenu(), 99, "menu");
+	}
+
 	//if (trg & INPUT_DPAD_UP) { camera->_vTarget.y -= 1; }
 	//if (trg & INPUT_DPAD_DOWN) { camera->_vTarget.y += 1; }
 			// デバッグ機能
