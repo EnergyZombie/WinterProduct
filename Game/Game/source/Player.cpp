@@ -17,7 +17,7 @@ Player::~Player() {
 
 bool Player::Initialize() {
 		// モデルデータのロード（テクスチャも読み込まれる）
-
+	_object_type = OBJECT_TYPE::kChara;
 	_handle = MV1LoadModel("res/SDChar/SDChar.mv1");
 	// 3Dモデルの1番目のアニメーションをアタッチする
 	_attach_index = 0;
@@ -30,7 +30,7 @@ bool Player::Initialize() {
 	_is_stand = true;
 	_colSubY = 40.f;
 
-	radian = 30;
+	_radian = 30;
 
 	MV1SetAttachAnimTime(_handle, _attach_index, _play_time);
 
@@ -183,22 +183,6 @@ bool Player::Process() {
 bool Player::Render() {
 	if (CharaBase::Render()) {
 
-		if (Map::_bViewCollision) {
-			DrawCapsule3D(
-				VAdd(DxConverter::VecToDx(_pos), VGet(0, _colSubY + radian, 0)),
-				VAdd(DxConverter::VecToDx(_pos), VGet(0, radian, 0)),
-				radian, 10,
-				GetColor(255, 0, 0),
-				GetColor(255, 255, 255),
-				FALSE
-			);
-
-			DrawLine3D(
-				DxConverter::VecToDx(_pos + Vector3D(0, _colSubY + radian * 2, 0)),
-				DxConverter::VecToDx(_pos + Vector3D(0, -1, 0)),
-				GetColor(0, 0, 255)
-			);
-		}
 	}
 	//DrawFormatString(
 	//	0, 0, GetColor(255, 0, 0),

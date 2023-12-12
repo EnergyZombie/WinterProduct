@@ -14,6 +14,8 @@ ObjectBase::~ObjectBase() {
 
 bool ObjectBase::Initialize() {
 
+	_object_type = OBJECT_TYPE::kObject;
+
 	matrix = MGetIdent();
 	matrix = MMult(matrix, MGetRotX(_euler_angle.x));
 	matrix = MMult(matrix, MGetRotY(_euler_angle.y));

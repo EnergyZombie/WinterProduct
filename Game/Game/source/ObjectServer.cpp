@@ -1,10 +1,8 @@
 #include"ObjectServer.h"
 #include"Player.h"
-#include"FallWall.h"
-#include"SignBoard.h"
 #include"ModeGame.h"
 #include<algorithm>
-#include"DebugEnemy.h"
+
 
 ObjectServer::ObjectServer(ModeGame* game) {
 	_game = game;
@@ -15,7 +13,6 @@ ObjectServer::~ObjectServer() {
 }
 
 bool ObjectServer::Initialize() {
-	AddObj(new DebugEnemy(this));
 	return true;
 }
 

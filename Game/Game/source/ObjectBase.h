@@ -24,7 +24,12 @@ public:
 	int GetHandle()const { return _handle; }
 	int GetAttachIndex()const { return _attach_index;}
 
-
+	//コリジョンの使い分けとかに使う
+	enum class OBJECT_TYPE {
+		kChara,
+		kObject
+	}_object_type;
+	OBJECT_TYPE GetObjectType()const { return _object_type; }
 
 
 	class ObjectServer* GetObjectServer()const { return _server; }
@@ -43,9 +48,6 @@ protected:
 
 	MATRIX matrix;
 
-	enum class TYPE {
-		kPlayer,
-	}_type;
 
 
 private:
