@@ -78,6 +78,18 @@ bool CharaBase::IsHitMap(){
 }
 
 bool CharaBase::IsPushedObject(ObjectBase* obj) {
+	MV1_COLL_RESULT_POLY hit = MV1CollCheck_Line(
+		obj->GetHandle(),
+		obj->GetAttachIndex(),
+		DxConverter::VecToDx(_pos + Vector3D(0, 40, 0)),
+		DxConverter::VecToDx(_pos + Vector3D(0, -20, 0))
+	);
+	if (hit.HitFlag) {
+		// 当たった
+		// 当たったY位置をキャラ座標にする
+		_pos.y = hit.HitPosition.y;
+	}
+
 	MV1_COLL_RESULT_POLY_DIM  hitobj = MV1CollCheck_Capsule(
 		obj->GetHandle(),
 		obj->GetAttachIndex(),
@@ -125,17 +137,7 @@ bool CharaBase::IsPushedObject(ObjectBase* obj) {
 			_pos += (add - add_base_point);
 		}
 
-		MV1_COLL_RESULT_POLY hit = MV1CollCheck_Line(
-			obj->GetHandle(),
-			obj->GetAttachIndex(),
-			DxConverter::VecToDx(_pos + Vector3D(0, 40, 0)),
-			DxConverter::VecToDx(_pos + Vector3D(0, -20, 0))
-		);
-		if (hit.HitFlag) {
-			// 当たった
-			// 当たったY位置をキャラ座標にする
-			_pos.y = hit.HitPosition.y;
-		}
+
 
 	}
 	MV1CollResultPolyDimTerminate(hitobj);
@@ -197,7 +199,7 @@ void CharaBase::ProcessGravity() {
 			);
 			if (hit.HitFlag) {
 
-				if (_old_pos.y > _pos.y) {
+				if (hit.HitPosition.y > _pos.y) {
 
 					_is_stand = true;
 
