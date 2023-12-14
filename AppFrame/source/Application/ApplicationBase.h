@@ -21,14 +21,18 @@ public:
 	virtual bool Render();
 
 	virtual bool AppWindowed() { return true; }
-	virtual int DispSizeW() { return 640; }
-	virtual int DispSizeH() { return 480; }
+	virtual int DispSizeW() { return 640; }	 
+	virtual int DispSizeH() { return 480; }	 
 
 	static	ApplicationBase	*GetInstance() { return _lpInstance; }
 	virtual int GetKey() { return _gKey; }
 	virtual int GetTrg() { return _gTrg; }
 
 	XGamePad* GetPad()const { return _pad; }
+
+	void GameEnd();
+	bool GetEnd() { return _gameEnd; }
+
 protected:
 	static	ApplicationBase	*_lpInstance;
 
@@ -37,5 +41,7 @@ protected:
 	ModeServer* _serverMode;
 
 private:
+	bool _gameEnd;
+
 	XGamePad* _pad;
 };

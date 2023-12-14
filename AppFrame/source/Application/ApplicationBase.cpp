@@ -8,6 +8,7 @@ ApplicationBase	*ApplicationBase::_lpInstance = NULL;
 ApplicationBase::ApplicationBase() {
 	_lpInstance = this;
 	_pad = new XGamePad(DX_INPUT_PAD1);
+	_gameEnd = false;
 }
 
 ApplicationBase::~ApplicationBase() {
@@ -70,3 +71,4 @@ bool ApplicationBase::Render() {
 	return true;
 }
 
+void ApplicationBase::GameEnd() { _gameEnd = true; }
