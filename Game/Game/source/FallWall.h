@@ -10,7 +10,7 @@ public:
 	bool Initialize()override;
 	//bool Terminate()override;
 	bool Process()override;
-	bool Renderer()override;
+	bool Render()override;
 protected:
 	bool _is_fall;
 	int _count;

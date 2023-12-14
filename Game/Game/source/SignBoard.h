@@ -6,7 +6,7 @@ public:
 	SignBoard(class ObjectServer* base):ObjectBase(base){}
 	bool Initialize()override;
 	bool Process()override;
-	bool Renderer()override;
+	bool Render()override;
 protected:
 	int _ui_text;
 };

@@ -17,7 +17,7 @@ Player::~Player() {
 
 bool Player::Initialize() {
 		// モデルデータのロード（テクスチャも読み込まれる）
-
+	_object_type = OBJECT_TYPE::kChara;
 	_handle = MV1LoadModel("res/SDChar/SDChar.mv1");
 	// 3Dモデルの1番目のアニメーションをアタッチする
 	_attach_index = 0;
@@ -30,7 +30,7 @@ bool Player::Initialize() {
 	_is_stand = true;
 	_colSubY = 40.f;
 
-	radian = 30;
+	_radian = 30;
 
 	MV1SetAttachAnimTime(_handle, _attach_index, _play_time);
 
@@ -47,66 +47,10 @@ bool Player::Process() {
 
 	auto pad = GetObjectServer()->GetGame()->GetPad();
 	auto camera = GetObjectServer()->GetGame()->GetCamera();
-	auto map = GetObjectServer()->GetGame()->GetMap();
 
-	// 移動前の位置を保存
 	_old_pos = _pos;
-	float cam_y = 0.f;
 
-
-	//重力処理
-	if (_gravity > -40.f) {
-		_gravity -= 1.f;
-	}
-	_pos.y += _gravity;
-
-	MV1_COLL_RESULT_POLY hit = MV1CollCheck_Line(
-		map->GetHandleMap(),
-		map->GetCollisionIndex(),
-		DxConverter::VecToDx(_pos + Vector3D(0, _colSubY + radian * 2 , 0)),
-		DxConverter::VecToDx(_pos + Vector3D(0, 0, 0))
-	);
-	if (hit.HitFlag) {
-		// 当たった
-		// 当たったY位置をキャラ座標にする
-		if (_old_pos.y > _pos.y) {
-			_pos.y = hit.HitPosition.y;
-			_is_stand = true;
-		}
-		else {
-			_pos.y = VSub(hit.HitPosition, VGet(0, _colSubY + radian * 2 , 0)).y;
-		}
-		_gravity = 0;
-		_onObj = nullptr;
-	}
-	else { 
-		_is_stand = false;
-		for (auto& obj : GetObjectServer()->GetObjects()) {
-			MV1_COLL_RESULT_POLY hit = MV1CollCheck_Line(
-				obj->GetHandle(), 
-				obj->GetAttachIndex(),
-				DxConverter::VecToDx(_pos + Vector3D(0, _colSubY + radian * 2, 0)),
-				DxConverter::VecToDx(_pos + Vector3D(0, 0, 0))
-			);
-			if (hit.HitFlag) {
-			
-				if (_old_pos.y > _pos.y) {
-				
-					_is_stand = true;
-			
-					_pos.y = hit.HitPosition.y + 1;
-
-					_onObj = obj;
-
-				}
-				else {
-					_pos.y = VSub(hit.HitPosition, VGet(0, _colSubY + radian * 2, 0)).y;
-				}
-				_gravity = 0;
-			}
-		}
-	}
-	//MV1SetPosition(_handle, DxConverter::VecToDx(_pos));
+	ProcessGravity();
 	
 	if (pad->IsInputLeftStick()) {
 		_euler_angle.y = atan2((float)pad->GetLeftStick().x,(float)pad->GetLeftStick().y);
@@ -120,7 +64,7 @@ bool Player::Process() {
 
 		_pos += vDir * 5.f;
 
-		_euler_angle = Vector3D(0, _euler_angle.y + (double)PI, 0);
+		_euler_angle = Vector3D(0, _euler_angle.y, 0);
 
 		_action_state = ACTION_STATE::kWalk;
 
@@ -181,25 +125,9 @@ bool Player::Process() {
 	return true;
 }
 
-bool Player::Renderer() {
-	if (CharaBase::Renderer()) {
+bool Player::Render() {
+	if (CharaBase::Render()) {
 
-		if (Map::_bViewCollision) {
-			DrawCapsule3D(
-				VAdd(DxConverter::VecToDx(_pos), VGet(0, _colSubY + radian, 0)),
-				VAdd(DxConverter::VecToDx(_pos), VGet(0, radian, 0)),
-				radian, 10,
-				GetColor(255, 0, 0),
-				GetColor(255, 255, 255),
-				FALSE
-			);
-
-			DrawLine3D(
-				DxConverter::VecToDx(_pos + Vector3D(0, _colSubY + radian * 2, 0)),
-				DxConverter::VecToDx(_pos + Vector3D(0, -1, 0)),
-				GetColor(0, 0, 255)
-			);
-		}
 	}
 	//DrawFormatString(
 	//	0, 0, GetColor(255, 0, 0),
