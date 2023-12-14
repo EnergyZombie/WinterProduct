@@ -182,6 +182,7 @@
     <ClInclude Include="source\GoalFloor.h" />
     <ClInclude Include="source\LeanFloor.h" />
     <ClInclude Include="source\Map.h" />
+    <ClInclude Include="source\MenuItemBase.h" />
     <ClInclude Include="source\ModeClear.h" />
     <ClInclude Include="source\ModeGame.h" />
     <ClInclude Include="source\ModeGameOver.h" />

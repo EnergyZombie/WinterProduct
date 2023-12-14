@@ -22,6 +22,12 @@
     <Filter Include="ソース ファイル\Object">
       <UniqueIdentifier>{14c0a70c-bab7-43ec-9ea2-ddb62df113a3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Menu">
+      <UniqueIdentifier>{027fdb35-104b-475f-8fe4-f809ec150bcc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Menu">
+      <UniqueIdentifier>{4717e66c-71b2-4740-b15f-7742ead88702}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\ApplicationMain.cpp">
@@ -76,7 +82,7 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="source\ModeMenu.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\Menu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -132,7 +138,10 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="source\ModeMenu.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ヘッダー ファイル\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="source\MenuItemBase.h">
+      <Filter>ヘッダー ファイル\Menu</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

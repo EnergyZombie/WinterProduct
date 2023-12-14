@@ -29,6 +29,10 @@ public:
 	virtual int GetTrg() { return _gTrg; }
 
 	XGamePad* GetPad()const { return _pad; }
+
+	void GameEnd();
+	bool GetEnd() { return _gameEnd; }
+
 protected:
 	static	ApplicationBase	*_lpInstance;
 
@@ -37,5 +41,7 @@ protected:
 	ModeServer* _serverMode;
 
 private:
+	bool _gameEnd;
+
 	XGamePad* _pad;
 };
