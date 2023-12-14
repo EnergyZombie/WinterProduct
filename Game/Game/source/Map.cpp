@@ -12,6 +12,7 @@
 #include"GoalFloor.h"
 #include"LeanFloor.h"
 #include"SignBoard.h"
+#include"DebugEnemy.h"
 
 bool	Map::_bViewCollision;
 
@@ -54,6 +55,7 @@ bool Map::Process(ModeGame* game) {
 	 //デバッグ機能
 	if (pad->GetTrgButton() & INPUT_BACK) {
 		_bViewCollision = !_bViewCollision;
+		CharaBase::collision = !CharaBase::collision;
 	}
 	//if (_bViewCollision) {
 	//	MV1SetFrameVisible(_handleMap, _frameMapCollision, TRUE);
@@ -109,6 +111,9 @@ bool Map::LoadMap(ModeGame* game) {
 		}
 		else if ("SignBoard" == name) {
 			obj = new SignBoard(game->GetObjectServer());
+		}
+		else if ("DebugEnemy" == name) {
+			obj = new DebugEnemy(game->GetObjectServer());
 		}
 
 		//情報を入れる

@@ -24,8 +24,8 @@ bool SignBoard::Process(){
 	return true;
 
 }
-bool SignBoard::Renderer(){ 
-	ObjectBase::Renderer();
+bool SignBoard::Render(){ 
+	ObjectBase::Render();
 	auto pos = GetObjectServer()->GetPlayer()->GetPos();
 	if (Vector3D::Length(pos, _pos) < 100) {
 		VECTOR dp = ConvWorldPosToScreenPos(DxConverter::VecToDx(pos));

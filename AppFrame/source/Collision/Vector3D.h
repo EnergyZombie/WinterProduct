@@ -81,7 +81,7 @@ public:
 	const double LengthSquare();
 
 	//ê≥ãKâª
-	const Vector3D Normalize();
+	Vector3D Normalize();
 	void Normalized();
 
 };

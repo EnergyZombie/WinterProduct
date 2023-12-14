@@ -37,7 +37,7 @@ const double Vector3D::LengthSquare() {
 	return Dot(*this, *this);
 }
 
-const Vector3D Vector3D::Normalize(){
+Vector3D Vector3D::Normalize(){
 	return *this * (1 / Length());
 }
 

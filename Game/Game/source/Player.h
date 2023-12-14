@@ -14,7 +14,7 @@ public:
 
 	bool Initialize()override;
 	bool Process()override;
-	bool Renderer()override;
+	bool Render()override;
 
 protected:
 

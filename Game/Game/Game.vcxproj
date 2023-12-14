@@ -157,6 +157,7 @@
   <ItemGroup>
     <ClCompile Include="source\ApplicationMain.cpp" />
     <ClCompile Include="source\CharaBase.cpp" />
+    <ClCompile Include="source\DebugEnemy.cpp" />
     <ClCompile Include="source\FallWall.cpp" />
     <ClCompile Include="source\GoalFloor.cpp" />
     <ClCompile Include="source\LeanFloor.cpp" />
@@ -178,6 +179,7 @@
     <ClInclude Include="source\ApplicationMain.h" />
     <ClInclude Include="source\Camera.h" />
     <ClInclude Include="source\CharaBase.h" />
+    <ClInclude Include="source\DebugEnemy.h" />
     <ClInclude Include="source\FallWall.h" />
     <ClInclude Include="source\GoalFloor.h" />
     <ClInclude Include="source\LeanFloor.h" />
